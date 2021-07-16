@@ -5,5 +5,5 @@ output "dn" {
 
 output "name" {
   value       = aci_rest.fvTenant.content.name
-  description = "Tenant Name"
+  description = "Tenant name"
 }

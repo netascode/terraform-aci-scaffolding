@@ -38,16 +38,16 @@ module "aci_scaffolding" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_name"></a> [name](#input\_name) | Tenant Name | `string` | n/a | yes |
-| <a name="input_alias"></a> [alias](#input\_alias) | Tenant Alias | `string` | `null` | no |
-| <a name="input_description"></a> [description](#input\_description) | Tenant Description | `string` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | Tenant name | `string` | n/a | yes |
+| <a name="input_alias"></a> [alias](#input\_alias) | Tenant alias | `string` | `null` | no |
+| <a name="input_description"></a> [description](#input\_description) | Tenant description | `string` | `null` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_dn"></a> [dn](#output\_dn) | Distinguished name of `fvTenant` object |
-| <a name="output_name"></a> [name](#output\_name) | Tenant Name |
+| <a name="output_name"></a> [name](#output\_name) | Tenant name |
 
 ## Resources
 
