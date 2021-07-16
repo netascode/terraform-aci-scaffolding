@@ -36,7 +36,7 @@ resource "test_assertions" "fvTenant" {
 
   equal "nameAlias" {
     description = "nameAlias"
-    got         = data.aci_rest.fvTenant.content.alias
+    got         = data.aci_rest.fvTenant.content.nameAlias
     want        = "ALIAS"
   }
 
