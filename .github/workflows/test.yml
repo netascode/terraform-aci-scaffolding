@@ -1,0 +1,62 @@
+name: Tests
+on:
+  workflow_dispatch:
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  static:
+    name: Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency: testing_environment
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Python Setup
+        uses: actions/setup-python@v2
+
+      - name: Terraform Setup
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Tflint Setup
+        uses: terraform-linters/setup-tflint@v1
+
+      - name: Terraform Docs Setup
+        run: |
+          mkdir terraform-docs && cd terraform-docs
+          curl -sSLo terraform-docs.tar.gz https://terraform-docs.io/dl/v0.14.1/terraform-docs-v0.14.1-linux-amd64.tar.gz
+          tar -xzf terraform-docs.tar.gz
+          chmod +x terraform-docs
+          echo "$GITHUB_WORKSPACE/terraform-docs" >> $GITHUB_PATH
+
+      - name: Pre-commit Checks
+        uses: pre-commit/action@v2.0.3
+
+      - name: Terraform Test
+        id: test
+        env:
+          ACI_USERNAME: ${{ secrets.ACI_USERNAME }}
+          ACI_PASSWORD: ${{ secrets.ACI_PASSWORD }}
+          ACI_URL: ${{ secrets.ACI_URL }}
+        run: terraform test
+
+      - name: Webex Notification
+        if: always()
+        uses: qsnyder/action-wxt@master
+        env:
+          TOKEN: ${{ secrets.WEBEX_TOKEN }}
+          ROOMID: ${{ secrets.WEBEX_ROOM_ID }}
+          MESSAGE: |
+            [**[${{ job.status }}] ${{ github.repository }} #${{ github.run_id }}**](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            * Commit: [${{ github.event.head_commit.message }}](${{ github.event.head_commit.url }})
+            * Author: ${{ github.event.pusher.name }}
+            * Branch: ${{ github.ref }}
+            * Event: ${{ github.event_name }}
