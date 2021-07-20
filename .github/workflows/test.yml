@@ -55,7 +55,7 @@ jobs:
           files: test-report.xml
           check_name: 'Integration Test Results'
 
-      - name: Dump github context
+      - name: Dump Github Context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
           JOB_CONTEXT: ${{ toJson(job) }}
