@@ -53,6 +53,7 @@ jobs:
         if: always()
         with:
           files: test-report.xml
+          check_name: 'Integration Test Results'
 
       - name: Webex Notification
         if: always()
