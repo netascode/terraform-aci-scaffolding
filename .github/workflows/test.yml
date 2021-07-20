@@ -46,7 +46,13 @@ jobs:
           ACI_USERNAME: ${{ secrets.ACI_USERNAME }}
           ACI_PASSWORD: ${{ secrets.ACI_PASSWORD }}
           ACI_URL: ${{ secrets.ACI_URL }}
-        run: terraform test
+        run: terraform test -junit-xml=test-report.xml
+
+      - name: Publish Integration Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: test-report.xml
 
       - name: Webex Notification
         if: always()
