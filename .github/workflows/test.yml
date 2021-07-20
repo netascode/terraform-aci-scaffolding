@@ -56,7 +56,12 @@ jobs:
           check_name: 'Integration Test Results'
 
       - name: Dump github context
-        run: echo ${{ github }}
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+          echo "$JOB_CONTEXT"
 
       - name: Webex Notification
         if: always()
