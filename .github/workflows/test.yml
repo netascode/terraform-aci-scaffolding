@@ -55,6 +55,14 @@ jobs:
           files: test-report.xml
           check_name: 'Integration Test Results'
 
+      - name: Dump Github Context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+          echo "$JOB_CONTEXT"
+
       - name: Webex Notification
         if: always()
         uses: qsnyder/action-wxt@master
@@ -62,8 +70,8 @@ jobs:
           TOKEN: ${{ secrets.WEBEX_TOKEN }}
           ROOMID: ${{ secrets.WEBEX_ROOM_ID }}
           MESSAGE: |
-            [**[${{ job.status }}] ${{ github.repository }} #${{ github.run_id }}**](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
-            * Commit: [${{ github.event.head_commit.message }}](${{ github.event.head_commit.url }})
-            * Author: ${{ github.event.pusher.name }}
+            [**[${{ job.status }}] ${{ github.repository }} #${{ github.run_number }}**](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            * Commit: [${{ github.event.head_commit.message }}](${{ github.event.head_commit.url }})[${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
+            * Author: ${{ github.event.sender.login }}
             * Branch: ${{ github.ref }}
             * Event: ${{ github.event_name }}
