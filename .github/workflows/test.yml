@@ -70,8 +70,8 @@ jobs:
           TOKEN: ${{ secrets.WEBEX_TOKEN }}
           ROOMID: ${{ secrets.WEBEX_ROOM_ID }}
           MESSAGE: |
-            [**[${{ job.status }}] ${{ github.repository }} #${{ github.run_id }}**](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
-            * Commit: [${{ github.event.commits[0].message }}](${{ github.event.commits[0].url }})
+            [**[${{ job.status }}] ${{ github.repository }} #${{ github.run_number }}**](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            * Commit: [${{ github.event.head_commit.message }}](${{ github.event.head_commit.url }})[${{ github.event.title }}](${{ github.event.html_url }})
             * Author: ${{ github.event.sender.login }}
             * Branch: ${{ github.ref }}
             * Event: ${{ github.event_name }}
