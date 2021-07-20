@@ -55,6 +55,9 @@ jobs:
           files: test-report.xml
           check_name: 'Integration Test Results'
 
+      - name: Dump github context
+        run: echo ${{ github }}
+
       - name: Webex Notification
         if: always()
         uses: qsnyder/action-wxt@master
