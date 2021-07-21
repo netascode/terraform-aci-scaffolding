@@ -33,5 +33,4 @@ output:
   mode: replace
 
 sort:
-  enabled: true
-  by: required
+  enabled: false
