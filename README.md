@@ -38,9 +38,9 @@ module "aci_scaffolding" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_name"></a> [name](#input\_name) | Tenant name | `string` | n/a | yes |
-| <a name="input_alias"></a> [alias](#input\_alias) | Tenant alias | `string` | `""` | no |
-| <a name="input_description"></a> [description](#input\_description) | Tenant description | `string` | `""` | no |
+| <a name="input_name"></a> [name](#input\_name) | Tenant name. | `string` | n/a | yes |
+| <a name="input_alias"></a> [alias](#input\_alias) | Tenant alias. | `string` | `""` | no |
+| <a name="input_description"></a> [description](#input\_description) | Tenant description. | `string` | `""` | no |
 
 ## Outputs
 

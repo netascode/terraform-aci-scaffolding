@@ -1,5 +1,5 @@
 variable "name" {
-  description = "Tenant name"
+  description = "Tenant name."
   type        = string
 
   validation {
@@ -9,7 +9,7 @@ variable "name" {
 }
 
 variable "alias" {
-  description = "Tenant alias"
+  description = "Tenant alias."
   type        = string
   default     = ""
 
@@ -20,7 +20,7 @@ variable "alias" {
 }
 
 variable "description" {
-  description = "Tenant description"
+  description = "Tenant description."
   type        = string
   default     = ""
 
