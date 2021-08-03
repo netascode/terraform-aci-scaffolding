@@ -46,8 +46,8 @@ module "aci_scaffolding" {
 
 | Name | Description |
 |------|-------------|
-| <a name="output_dn"></a> [dn](#output\_dn) | Distinguished name of `fvTenant` object |
-| <a name="output_name"></a> [name](#output\_name) | Tenant name |
+| <a name="output_dn"></a> [dn](#output\_dn) | Distinguished name of `fvTenant` object. |
+| <a name="output_name"></a> [name](#output\_name) | Tenant name. |
 
 ## Resources
 
