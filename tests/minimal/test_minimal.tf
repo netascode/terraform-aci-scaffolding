@@ -5,8 +5,8 @@ terraform {
     }
 
     aci = {
-      source  = "netascode/aci"
-      version = ">=0.2.0"
+      source  = "CiscoDevNet/aci"
+      version = ">=2.0.0"
     }
   }
 }
@@ -17,7 +17,7 @@ module "main" {
   name = "ABC"
 }
 
-data "aci_rest" "fvTenant" {
+data "aci_rest_managed" "fvTenant" {
   dn = "uni/tn-ABC"
 
   depends_on = [module.main]
@@ -28,19 +28,19 @@ resource "test_assertions" "fvTenant" {
 
   equal "name" {
     description = "name"
-    got         = data.aci_rest.fvTenant.content.name
+    got         = data.aci_rest_managed.fvTenant.content.name
     want        = "ABC"
   }
 
   equal "nameAlias" {
     description = "nameAlias"
-    got         = data.aci_rest.fvTenant.content.nameAlias
+    got         = data.aci_rest_managed.fvTenant.content.nameAlias
     want        = ""
   }
 
   equal "descr" {
     description = "descr"
-    got         = data.aci_rest.fvTenant.content.descr
+    got         = data.aci_rest_managed.fvTenant.content.descr
     want        = ""
   }
 }

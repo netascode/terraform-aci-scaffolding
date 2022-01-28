@@ -1,4 +1,4 @@
-resource "aci_rest" "fvTenant" {
+resource "aci_rest_managed" "fvTenant" {
   dn         = "uni/tn-${var.name}"
   class_name = "fvTenant"
   content = {
