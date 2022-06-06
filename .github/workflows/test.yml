@@ -34,7 +34,7 @@ jobs:
           echo "$GITHUB_WORKSPACE/terraform-docs" >> $GITHUB_PATH
 
       - name: Pre-commit Checks
-        uses: pre-commit/action@v2.0.3
+        uses: pre-commit/action@v3.0.0
 
       - name: Terraform Test
         id: test
